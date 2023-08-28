@@ -1,9 +1,11 @@
-import { Pool } from 'pg';
-import { config } from 'dotenv';
-config();
-export const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_DATABASE
+import "dotenv/config";
+import { drizzle } from 'drizzle-orm/mysql2';
+import mysql from 'mysql2/promise';
+
+const poolConnection = mysql.createPool({
+    host:'localhost',
+    user:'root',
+    password:'frane',
+    database:'lara'
 });
+export const db = drizzle(poolConnection);
